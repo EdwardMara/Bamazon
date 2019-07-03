@@ -48,8 +48,28 @@ function buyProduct() {
 
         connection.query("SELECT * FROM products WHERE ?",{item_id: buyId},function(err, res){
             if (err) throw err;
-            console.log(res);
-        })
+            // console.log(res[0].stock_quantity);
+            var quantity = res[0].stock_quantity;
+            if(buyQuantity <= quantity){
+                var cost = buyQuantity * res[0].price;
+                var updateQuantity = quantity - buyQuantity;
+                console.log(`That will cost $${cost}, and there are ${updateQuantity} left.`);
+                connection.query("UPDATE products SET ? WHERE ?",
+                [
+                    {
+                        stock_quantity: updateQuantity
+                    },
+                    {
+                        item_id: buyId
+                    }
+                ]);
+                
+                
+            }else{
+                console.log("Insufficient Stock!")
+                
+            }
+        });
     })
 
 
