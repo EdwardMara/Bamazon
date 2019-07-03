@@ -63,10 +63,41 @@ function buyProduct() {
                         item_id: buyId
                     }
                 ]);
-                
+                //TODO: ask user if to go back to item list or end connection
+                inquirer.prompt(
+                    {
+                        name:"reset",
+                        type:"list",
+                        choices: ["Yes", "No"],
+                        message: "Would you like to continue shopping?"
+
+                    }
+                ).then(function(answer){
+                    if (answer.reset === "Yes"){
+                        queryProducts();
+                    }else{
+                        connection.end();
+                    }
+                });
                 
             }else{
                 console.log("Insufficient Stock!")
+                //TODO: ask user if to go back to item list or end connection
+                inquirer.prompt(
+                    {
+                        name:"reset",
+                        type:"list",
+                        choices: ["Yes", "No"],
+                        message: "Would you like to continue shopping?"
+
+                    }
+                ).then(function(answer){
+                    if (answer.reset === "Yes"){
+                        queryProducts();
+                    }else{
+                        connection.end();
+                    }
+                });
                 
             }
         });
