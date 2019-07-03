@@ -16,13 +16,17 @@ var connection = mysql.createConnection({
 connection.connect(function (err) {
     if (err) throw err;
     queryProducts();
+    
 });
 
 function queryProducts() {
     connection.query("SELECT * FROM products", function (err, results) {
         if (err) throw err;
         console.log(results);
+        buyProduct();
+        
     })
+    
 }
 
 function buyProduct() {
@@ -39,7 +43,13 @@ function buyProduct() {
         }
 
     ]).then(function(answer) {
+        var buyId = answer.buyId;
+        var buyQuantity = answer.buyQuantity;
 
+        connection.query("SELECT * FROM products WHERE ?",{item_id: buyId},function(err, res){
+            if (err) throw err;
+            console.log(res);
+        })
     })
 
 
