@@ -19,5 +19,8 @@ Open app in the CLI with `node bamazonCustomer.js`
 Follow prompts to navigate site.
 
 <img src="/images/node_1.png">
+<img src="/images/node_2.png">
+New product list with updated quantities
+<img sr="/images/node_3.png">
 
 
