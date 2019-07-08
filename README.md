@@ -16,5 +16,8 @@ In the CLI `npm init -y` and then install each package with `npm install [packag
 Create a table called "products" in mysql using MySQL using the provided schema and fill it with content.
 Open app in the CLI with `node bamazonCustomer.js`
 
-#### Commands
+Follow prompts to navigate site.
+
+<img src="/images/node_1.png">
+
 
